@@ -82,6 +82,14 @@ public class Equipment {
 	public void setPharmacy(Pharmacy pharmacy) {
 		this.pharmacy = pharmacy;
 	}
+
+	@Override
+	public String toString() {
+		return "Equipment [equipmentId=" + equipmentId + ", equipmentName=" + equipmentName + ", description="
+				+ description + ", quantity=" + quantity + ", unitPrice=" + unitPrice + ", purpose=" + purpose
+				+ ", purchaseDate=" + purchaseDate + ", pharmacy=" + pharmacy + ", status=" + status
+				+ ", dispensedEquipments=" + dispensedEquipments + "]";
+	}
     
     
 	

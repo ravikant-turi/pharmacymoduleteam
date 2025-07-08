@@ -6,9 +6,11 @@ public class ReviewPharmacyTest {
 	public static void main(String[] args) {
 		
 		ReviewPharmacyController controller=new ReviewPharmacyController();
-		
-		controller.showPharmacyAll().forEach(System.out::println);
-	System.out.println(controller.showPharmacyAll().get(0).getStatus());
+		System.out.println("===================");
+		controller.showPharmacyAllForReview().forEach(System.out::println);
+		System.out.println(controller.showPharmacyAllForReview().get(0).getEquipments());
+
+//	System.out.println(controller.showPharmacyAll().get(0).getStatus());
 	}
 
 }

@@ -5,6 +5,11 @@ package com.infinite.jsf.pharmacy.controller;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import com.infinite.jsf.pharmacy.daoImpl.PharmacyDaoImpl;
+import com.infinite.jsf.pharmacy.model.DispensedEquipments;
+import com.infinite.jsf.pharmacy.model.DispensedMedicines;
+import com.infinite.jsf.pharmacy.model.Equipment;
+import com.infinite.jsf.pharmacy.model.Medicines;
+import com.infinite.jsf.pharmacy.model.Pharmacists;
 import com.infinite.jsf.pharmacy.model.Pharmacy;
 
 import java.sql.Timestamp;
@@ -17,6 +22,9 @@ public class PharmacyController {
 	private PharmacyDaoImpl pharmacyDao;
     private Pharmacy pharmacy;
     private String confirmPassword;
+   
+    
+    
 
     public PharmacyDaoImpl getPharmacyDao() {
         return pharmacyDao;
