@@ -1,0 +1,179 @@
+CREATE TABLE Pharmacy (
+    pharmacy_id VARCHAR(10) PRIMARY KEY,
+    pharmacy_name VARCHAR(100) NOT NULL,
+    contact_no VARCHAR(15) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(45) NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    state VARCHAR(50) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    license_no VARCHAR(20) NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    gst_no VARCHAR(20),
+    pin_code VARCHAR(10),
+    address_line1 VARCHAR(255),
+    first_name VARCHAR(100),
+    middle_name VARCHAR(100),
+    last_name VARCHAR(100),
+    gender VARCHAR(10),
+    owner_mobile VARCHAR(20),
+    owner_email VARCHAR(100),
+    aadhar VARCHAR(20),
+    owner_address VARCHAR(255)
+);
+ 
+INSERT INTO Pharmacy VALUES 
+('PH001', 'HealthPlus Pharmacy', '9876543210', 'info@healthplus.com', 'securePass01', CURRENT_TIMESTAMP, 'Karnataka', 'Bengaluru', 'LIC12345', 'Active', 'GSTIN1234KP', '560001', '12 MG Road', 'Raj', NULL, 'Kumar', 'Male', '9876543211', 'raj.kumar@healthplus.com', 'AADHAR123456', '45 Residency Road'),
+ 
+('PH002', 'MedCare Hub', '9123456780', 'support@medcarehub.in', 'safeKey88', CURRENT_TIMESTAMP, 'Maharashtra', 'Mumbai', 'LIC67890', 'Active', 'GSTIN5678MH', '400001', '101 Linking Road', 'Priya', 'Anita', 'Desai', 'Female', '9123456781', 'priya.desai@medcarehub.in', 'AADHAR654321', '3rd Floor, Kurla Complex'),
+ 
+('PH003', 'WellSpring Drugs', '9988776655', 'contact@wellspring.com', 'medsecure99', CURRENT_TIMESTAMP, 'Delhi', 'New Delhi', 'LIC54321', 'Inactive', 'GSTIN9876DL', '110001', '50 Connaught Place', 'Arun', NULL, 'Joshi', 'Male', '9988776656', 'arun.joshi@wellspring.com', 'AADHAR789012', 'Sector 8, Dwarka'),
+ 
+('PH004', 'CareFirst Meds', '9012345678', 'hello@carefirst.org', 'passWord77', CURRENT_TIMESTAMP, 'Tamil Nadu', 'Chennai', 'LIC76543', 'Active', 'GSTIN3210TN', '600002', '23 Cathedral Road', 'Meena', 'Lakshmi', 'Ravi', 'Female', '9012345679', 'meena.ravi@carefirst.org', 'AADHAR345678', 'Bungalow No.4, Nungambakkam'),
+ 
+('PH005', 'Trust Pharmacy', '9823456789', 'trust@pharmacy.net', 'trusTPwd33', CURRENT_TIMESTAMP, 'West Bengal', 'Kolkata', 'LIC11223', 'Inactive', 'GSTIN1234WB', '700001', '88 Park Street', 'Vikram', NULL, 'Sen', 'Male', '9823456790', 'vikram.sen@trustpharmacy.net', 'AADHAR901234', 'Flat 10, Ballygunge Place');
+ 
+ 
+CREATE TABLE passwords (
+  PASSWORD_ID INT NOT NULL AUTO_INCREMENT,
+  PHARMACY_ID VARCHAR(45) NOT NULL,
+  PASSWORD VARCHAR(255) DEFAULT NULL,
+  PRIMARY KEY (PASSWORD_ID),
+  INDEX (PHARMACY_ID),
+  FOREIGN KEY (PHARMACY_ID) REFERENCES pharmacy(pharmacy_id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+ 
+INSERT INTO passwords (PHARMACY_ID, PASSWORD) VALUES ('PH001', 'Ananta@123');
+INSERT INTO passwords (PHARMACY_ID, PASSWORD) VALUES ('PH001', 'Anu@1');
+INSERT INTO passwords (PHARMACY_ID, PASSWORD) VALUES ('PH001', 'medic789');
+INSERT INTO passwords (PHARMACY_ID, PASSWORD) VALUES ('PH001', 'health@2025');
+INSERT INTO passwords (PHARMACY_ID, PASSWORD) VALUES ('PH002', 'pharma#pass');
+ 
+ 
+
+CREATE TABLE Medicines (
+    medicine_id VARCHAR(10) PRIMARY KEY,
+    medicine_name VARCHAR(100) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    quantity_in_stock INT NOT NULL,
+    expiry_date DATE NOT NULL,
+    unit_price DOUBLE NOT NULL,
+    pharmacy_id VARCHAR(10) NOT NULL,
+    purpose VARCHAR(100) NOT NULL,
+    batch_no VARCHAR(20) NOT NULL,
+    FOREIGN KEY (pharmacy_id) REFERENCES Pharmacy(pharmacy_id)
+);
+ 
+INSERT INTO Medicines VALUES 
+('MD001', 'Paracetamol 500mg', 'Pain relief and fever reducer', 200, '2026-05-10', 1.50, 'PH001', 'Pain relief', 'BATCHP001'),
+('MD002', 'Amoxicillin 250mg', 'Antibiotic for bacterial infections', 150, '2026-03-20', 4.75, 'PH001', 'Infection control', 'BATCHA002'),
+('MD003', 'Cetirizine 10mg', 'Antihistamine for allergies', 180, '2025-12-01', 2.00, 'PH002', 'Allergy relief', 'BATCHC003'),
+('MD004', 'Metformin 500mg', 'Used for Type 2 Diabetes', 100, '2026-07-15', 3.20, 'PH002', 'Diabetes management', 'BATCHM004'),
+('MD005', 'Ibuprofen 400mg', 'Anti-inflammatory and painkiller', 250, '2026-01-30', 2.50, 'PH003', 'Inflammation/pain', 'BATCHI005'),
+('MD006', 'Omeprazole 20mg', 'Treatment for acid reflux', 220, '2025-11-05', 1.95, 'PH003', 'Gastric issues', 'BATCHO006'),
+('MD007', 'Azithromycin 500mg', 'Broad-spectrum antibiotic', 130, '2026-06-25', 5.30, 'PH004', 'Infection control', 'BATCHA007'),
+('MD008', 'Losartan 50mg', 'Used to treat high blood pressure', 90, '2026-08-10', 3.90, 'PH004', 'Hypertension', 'BATCHL008'),
+('MD009', 'Levocetirizine 5mg', 'Antihistamine for allergic conditions', 160, '2025-10-18', 2.20, 'PH005', 'Allergy relief', 'BATCHL009'),
+('MD010', 'Aspirin 81mg', 'Blood thinner and pain reliever', 300, '2026-04-02', 1.25, 'PH005', 'Cardiac care & pain', 'BATCHA010');
+ 
+
+CREATE TABLE Pharmacists (
+    pharmacist_id VARCHAR(10) PRIMARY KEY,
+    pharmacist_name VARCHAR(100) NOT NULL,
+    phone_no VARCHAR(15) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    pharmacy_id VARCHAR(10) NOT NULL,
+    FOREIGN KEY (pharmacy_id) REFERENCES Pharmacy(pharmacy_id)
+);
+ 
+INSERT INTO Pharmacists VALUES 
+('PR001', 'Sneha Nair', '9876001234', 'sneha.nair@healthplus.com', 'PH001'),
+('PR002', 'Rohit Sharma', '9123456789', 'rohit.sharma@medcarehub.in', 'PH002'),
+('PR003', 'Anita Dutta', '9988776655', 'anita.dutta@wellspring.com', 'PH003'),
+('PR004', 'Karthik Iyer', '9012345670', 'karthik.iyer@carefirst.org', 'PH004'),
+('PR005', 'Meera Sen', '9823456781', 'meera.sen@trustpharmacy.net', 'PH005');
+ 
+
+CREATE TABLE Dispensed_Medicines (
+    dispense_id VARCHAR(10) PRIMARY KEY,
+    medicine_id VARCHAR(10) NOT NULL,
+    quantity_dispensed INT NOT NULL,
+    dispense_date DATE NOT NULL,
+    prescription_id varchar(10) Not Null,
+    doctor_id VARCHAR(10) NOT NULL,
+    h_id VARCHAR(10) NOT NULL,
+    pharmacist_name VARCHAR(45) NOT NULL,
+    pharmacy_id VARCHAR(10) NOT NULL,
+    FOREIGN KEY (Pharmacy_Id) REFERENCES Pharmacy(Pharmacy_Id),
+    FOREIGN KEY (medicine_id) REFERENCES medicines(medicine_id)
+    );
+ 
+INSERT INTO Dispensed_Medicines VALUES 
+('DP001', 'MD001', 10, '2025-07-01', 'RX001', 'DR001', 'H001', 'Sneha Nair', 'PH001'),
+('DP002', 'MD003', 5, '2025-07-02', 'RX002', 'DR002', 'H002', 'Rohit Sharma', 'PH002'),
+('DP003', 'MD005', 8, '2025-07-02', 'RX003', 'DR003', 'H003', 'Anita Dutta', 'PH003'),
+('DP004', 'MD007', 12, '2025-07-03', 'RX004', 'DR004', 'H004', 'Karthik Iyer', 'PH004'),
+('DP005', 'MD009', 6, '2025-07-03', 'RX005', 'DR005', 'H005', 'Meera Sen', 'PH005');
+ 
+
+CREATE TABLE Equipment (
+    equipment_id VARCHAR(10) PRIMARY KEY,
+    equipment_name VARCHAR(100) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    unit_price DOUBLE NOT NULL,
+    purpose VARCHAR(100) NOT NULL,
+    purchase_date DATE NOT NULL,
+    pharmacy_id VARCHAR(10) NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    FOREIGN KEY (pharmacy_id) REFERENCES Pharmacy(pharmacy_id)
+);
+ 
+INSERT INTO Equipment VALUES 
+('EQ001', 'Refrigerator', 'Used for storing temperature-sensitive medicines', 2, 15000.00, 'Medicine storage', '2025-06-10', 'PH001', 'Active'),
+('EQ002', 'Digital Thermometer', 'For measuring patient and medicine storage temperatures', 10, 250.00, 'Temperature check', '2025-06-12', 'PH001', 'Active'),
+('EQ003', 'Blood Pressure Monitor', 'Used to measure patients’ blood pressure', 5, 1200.00, 'Patient checkup', '2025-06-11', 'PH002', 'Active'),
+('EQ004', 'Weighing Scale', 'For measuring patient and medicine weights', 3, 800.00, 'Measurement', '2025-06-13', 'PH002', 'Active'),
+('EQ005', 'Label Printer', 'Prints prescription and medicine labels', 2, 4500.00, 'Labeling', '2025-06-10', 'PH003', 'Inactive'),
+('EQ006', 'Barcode Scanner', 'Scans medicine barcodes for inventory tracking', 4, 1800.00, 'Inventory management', '2025-06-14', 'PH003', 'Active'),
+('EQ007', 'Centrifuge', 'Used for medical testing and sample separation', 1, 8500.00, 'Sample analysis', '2025-06-15', 'PH004', 'Active'),
+('EQ008', 'Oxygen Cylinder', 'Emergency use for patients with respiratory issues', 6, 2200.00, 'Emergency response', '2025-06-10', 'PH004', 'Active'),
+('EQ009', 'UV Sterilizer', 'Sterilizes instruments using UV light', 2, 6500.00, 'Instrument sterilization', '2025-06-12', 'PH005', 'Inactive'),
+('EQ010', 'Pulse Oximeter', 'Monitors oxygen levels in patients’ blood', 7, 900.00, 'Patient monitoring', '2025-06-13', 'PH005', 'Active');
+ 
+
+CREATE TABLE Dispensed_Equipments (
+    dispensed_equip_id VARCHAR(10) PRIMARY KEY,
+    equipment_id VARCHAR(10) NOT NULL,
+    quantity_dispensed INT NOT NULL,
+    dispense_date DATE NOT NULL,
+    prescription_id varchar(10) Not Null,
+    doctor_id VARCHAR(10) NOT NULL,
+    h_id VARCHAR(10) NOT NULL,
+    pharmacist_name VARCHAR(45) NOT NULL,
+    pharmacy_id VARCHAR(10) NOT NULL,
+    FOREIGN KEY (Pharmacy_Id) REFERENCES Pharmacy(Pharmacy_Id),
+    FOREIGN KEY (equipment_id) REFERENCES equipment(equipment_id)
+    );
+    INSERT INTO Dispensed_Equipments VALUES 
+('DE001', 'EQ001', 1, '2025-07-01', 'RX001', 'DR001', 'H001', 'Sneha Nair', 'PH001'),
+('DE002', 'EQ003', 2, '2025-07-02', 'RX002', 'DR002', 'H002', 'Rohit Sharma', 'PH002'),
+('DE003', 'EQ006', 1, '2025-07-03', 'RX003', 'DR003', 'H003', 'Anita Dutta', 'PH003'),
+('DE004', 'EQ008', 3, '2025-07-04', 'RX004', 'DR004', 'H004', 'Karthik Iyer', 'PH004'),
+('DE005', 'EQ010', 2, '2025-07-05', 'RX005', 'DR005', 'H005', 'Meera Sen', 'PH005');
+ 
+ 
+
+CREATE TABLE Pharmacy_Otp (
+    otp_id INT AUTO_INCREMENT PRIMARY KEY,
+    pharmacy_id VARCHAR(20) NOT NULL,
+    otp_code VARCHAR(6) NOT NULL,
+    purpose ENUM('REGISTER', 'FORGOT_PASSWORD') NOT NULL,
+    new_password VARCHAR(255),
+    status ENUM('PENDING', 'VERIFIED', 'EXPIRED') NOT NULL DEFAULT 'PENDING',
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    expires_at DATETIME NOT NULL,
+    FOREIGN KEY (pharmacy_id) REFERENCES Pharmacy(pharmacy_id)
+);
