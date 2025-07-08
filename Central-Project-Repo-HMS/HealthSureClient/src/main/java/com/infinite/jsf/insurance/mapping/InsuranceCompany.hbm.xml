@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.infinite.jsf.insurance.model.InsuranceCompany" table="Insurance_company">
+    <id name="companyId" column="company_id" type="string">
+      <generator class="assigned"/>
+    </id>
+
+    <property name="companyName" column="name" type="string" not-null="true" length="100"/>
+    <property name="contactEmail" column="contact_email" type="string" length="100"/>
+    <property name="contactNumber" column="contact_phone" type="string" length="20"/>
+    <property name="address" column="head_office" type="string" length="255"/>
+
+    <set name="insurancePlans" table="Insurance_plan" inverse="true" cascade="all-delete-orphan" lazy="true">
+      <key column="company_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.insurance.model.InsurancePlan"/>
+    </set>
+  </class>
+</hibernate-mapping>

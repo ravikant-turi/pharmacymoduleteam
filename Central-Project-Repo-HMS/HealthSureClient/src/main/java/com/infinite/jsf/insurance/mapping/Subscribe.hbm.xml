@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.infinite.jsf.insurance.model.Subscribe" table="subscribe">
+    <id name="subscribeId" column="subscribe_id" type="string">
+      <generator class="assigned"/>
+    </id>
+
+    <many-to-one name="recipient" class="com.infinite.jsf.recipient.model.Recipient" column="h_id" not-null="true" fetch="join"/>
+
+    <many-to-one name="coverage" class="com.infinite.jsf.insurance.model.InsuranceCoverageOption" column="coverage_id" not-null="true" fetch="join"/>
+
+    <property name="subscribeDate" column="subscribe_date" type="date" not-null="true"/>
+    <property name="expiryDate" column="expiry_date" type="date" not-null="true"/>
+    
+    <!-- Proper Enum Mapping for type -->
+    <property name="type">
+      <column name="type" sql-type="enum('individual','family')"/>
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">com.infinite.jsf.insurance.model.SubscriptionType</param>
+        <param name="type">12</param>
+        <param name="useNamed">true</param>
+      </type>
+    </property>
+    
+    <!-- Proper Enum Mapping for status -->
+    <property name="status">
+      <column name="status" sql-type="enum('Active','Expired')" not-null="true"/>
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">com.infinite.jsf.insurance.model.SubscriptionStatus</param>
+        <param name="type">12</param>
+        <param name="useNamed">true</param>
+      </type>
+    </property>
+    
+    <property name="totalPremium" type="double" not-null="true">
+      <column name="total_premium" precision="10" scale="2"/>
+    </property>
+    
+    <property name="amountPaid" type="big_decimal" not-null="true">
+      <column name="amount_paid" precision="10" scale="2" default="0.00"/>
+    </property>
+
+    <set name="members" table="subscribed_members" cascade="all-delete-orphan" lazy="true" inverse="true">
+      <key column="subscribe_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.insurance.model.SubscribedMember"/>
+    </set>
+
+    <set name="claims" table="Claims" inverse="true" lazy="true">
+      <key column="subscribe_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.provider.model.Claims"/>
+    </set>
+  </class>
+</hibernate-mapping>

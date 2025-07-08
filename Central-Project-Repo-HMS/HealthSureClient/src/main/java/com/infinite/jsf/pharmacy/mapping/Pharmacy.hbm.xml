@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.infinite.jsf.pharmacy.model">
+
+    <class name="Pharmacy" table="pharmacy">
+
+        <id name="pharmacyId" column="pharmacy_id" type="string">
+            <generator class="assigned"/>
+        </id>
+
+        <property name="createdAt" column="created_at" type="timestamp"/>
+        <property name="pharmacyName" column="pharmacy_name" type="string"/>
+        <property name="contactNo" column="contact_no" type="string"/>
+        <property name="email" column="email" type="string"/>
+        <property name="password" column="password" type="string"/>
+        <property name="state" column="state" type="string"/>
+        <property name="city" column="city" type="string"/>
+        <property name="licenseNo" column="license_no" type="string"/>
+        <property name="status" column="status" type="string"/>
+        <property name="gstNo" column="gst_number" type="string"/>
+        <property name="pinCode" column="pin_code" type="string"/>
+        <property name="addressLine1" column="address_line1" type="string"/>
+        <property name="firstName" column="first_name" type="string"/>
+        <property name="middleName" column="middle_name" type="string"/>
+        <property name="lastName" column="last_name" type="string"/>
+        <property name="gender" column="gender" type="string"/>
+        <property name="ownerMobile" column="owner_mobile" type="string"/>
+        <property name="ownerEmail" column="owner_email" type="string"/>
+        <property name="aadhar" column="aadhar" type="string"/>
+        <property name="ownerAddress" column="owner_address" type="string"/>
+
+        <!-- One-to-Many Relationships -->
+        <set name="medicines" table="medicines" inverse="true" cascade="all" fetch="join" lazy="false">
+            <key column="pharmacy_id"/>
+            <one-to-many class="com.infinite.jsf.pharmacy.model.Medicines"/>
+        </set>
+
+        <set name="equipments" table="equipment" inverse="true" cascade="all" fetch="join" lazy="false">
+            <key column="pharmacy_id"/>
+            <one-to-many class="com.infinite.jsf.pharmacy.model.Equipment"/>
+        </set>
+
+        <set name="pharmacists" table="pharmacists" inverse="true"  cascade="all" fetch="join" lazy="false">
+            <key column="pharmacy_id"/>
+            <one-to-many class="com.infinite.jsf.pharmacy.model.Pharmacists"/>
+        </set>
+
+        <set name="dispensedMedicines" table="dispensed_medicines" inverse="true" cascade="all" fetch="join" lazy="false">
+            <key column="pharmacy_id"/>
+            <one-to-many class="com.infinite.jsf.pharmacy.model.DispensedMedicines"/>
+        </set>
+
+        <set name="dispensedEquipments" table="dispensed_equipments" inverse="true" cascade="all" fetch="join" lazy="false">
+            <key column="pharmacy_id"/>
+            <one-to-many class="com.infinite.jsf.pharmacy.model.DispensedEquipments"/>
+        </set>
+        
+        <set name="passwords" inverse="true" table="passwords" cascade="all" fetch="join" lazy="false">
+    		<key column="pharmacy_id" />
+    		<one-to-many class="com.infinite.jsf.pharmacy.model.Passwords"/>
+		</set>
+
+    </class>
+
+</hibernate-mapping>

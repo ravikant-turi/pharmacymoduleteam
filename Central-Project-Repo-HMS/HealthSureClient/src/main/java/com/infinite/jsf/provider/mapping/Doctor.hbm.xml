@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.infinite.jsf.provider.model.Doctor" table="Doctors">
+    <id name="doctorId" column="doctor_id" type="string">
+      <generator class="assigned"/>
+    </id>
+
+    <many-to-one name="provider" class="com.infinite.jsf.provider.model.Provider" column="provider_id" not-null="true" fetch="join"/>
+
+    <property name="doctorName" column="doctor_name" type="string" not-null="true" length="100"/>
+    <property name="qualification" column="qualification" type="string" length="255"/>
+    <property name="specialization" column="specialization" type="string" length="100"/>
+    <property name="licenseNo" column="license_no" type="string" not-null="true" length="50" unique="true"/>
+    <property name="email" column="email" type="string" not-null="true" length="100" unique="true"/>
+    <property name="address" column="address" type="string" not-null="true" length="225"/>
+    
+    <!-- Enum Mapping for Gender -->
+    <property name="gender" type="string">
+      <column name="gender" length="10"/>
+    </property>
+
+    <property name="password" column="password" type="string" not-null="true" length="255"/>
+
+    <!-- Enum Mapping for LoginStatus -->
+    <property name="loginStatus">
+      <column name="login_status" sql-type="enum('PENDING','APPROVED','REJECTED')" not-null="true"/>
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">com.infinite.jsf.provider.model.LoginStatus</param>
+        <param name="type">12</param>
+        <param name="useNamed">true</param>
+      </type>
+    </property>
+
+    <!-- Enum Mapping for DoctorStatus -->
+    <property name="doctorStatus">
+      <column name="doctor_status" sql-type="enum('ACTIVE','INACTIVE')" not-null="true"/>
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">com.infinite.jsf.provider.model.DoctorStatus</param>
+        <param name="type">12</param>
+        <param name="useNamed">true</param>
+      </type>
+    </property>
+
+    <!-- Relationships -->
+    <set name="availabilities" table="Doctor_availability" cascade="all-delete-orphan" lazy="true" inverse="true">
+      <key column="doctor_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.provider.model.DoctorAvailability"/>
+    </set>
+
+    <set name="appointments" table="Appointment" inverse="true" lazy="true">
+      <key column="doctor_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.provider.model.Appointment"/>
+    </set>
+
+    <set name="procedures" table="medical_procedure" inverse="true" lazy="true">
+      <key column="doctor_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.provider.model.MedicalProcedure"/>
+    </set>
+
+    <set name="prescriptions" table="prescription" inverse="true" lazy="true">
+      <key column="doctor_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.provider.model.Prescription"/>
+    </set>
+
+   <!--  <set name="dispensedMedicines" table="Dispensed_Medicines" inverse="true" lazy="true">
+      <key column="doctor_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.pharmacy.model.DispensedMedicine"/>  
+    </set>   --> 
+
+   <!-- <set name="dispensedEquipments" table="Dispensed_Equipments" inverse="true" lazy="true">
+      <key column="doctor_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.pharmacy.model.DispensedEquipment"/>  
+    </set>   --> 
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,89 @@
+/* ========== Footer ========== */
+.footer {
+    background-color: #0f172a;
+    color: #f1f5f9;
+    padding: 60px 20px 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-brand {
+    max-width: 240px;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #38bdf8;
+}
+
+.footer-logo-img {
+    width: 60px;
+    height: auto;
+    margin-bottom: 0.5rem;
+    border-radius: 50%;
+}
+
+.footer-links,
+.footer-contact,
+.footer-social {
+    flex: 1;
+    min-width: 180px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5rem;
+}
+
+.footer-links ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links ul li a {
+    color: #f1f5f9;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: #38bdf8;
+}
+
+.footer-contact p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.footer-social .social-icons a {
+    margin-right: 0.75rem;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.footer-social .social-icons img {
+    width: 24px;
+    height: 24px;
+    filter: invert(100%);
+}
+
+.footer-social .social-icons a:hover {
+    transform: scale(1.2);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    font-size: 0.9rem;
+    border-top: 1px solid #334155;
+    margin-top: 40px;
+}

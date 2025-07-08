@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.infinite.jsf.pharmacy.model.Equipment" table="Equipment" dynamic-update="true">
+        <id name="equipmentId" column="equipment_id" type="string">
+            <generator class="assigned"/>
+        </id>
+
+        <property name="equipmentName" column="equipment_name" type="string" not-null="true"/>
+        <property name="description" column="description" type="string" not-null="true"/>
+        <property name="quantity" column="quantity" type="int" not-null="true"/>
+        <property name="unitPrice" column="unit_price" type="double" not-null="true"/>
+        <property name="purpose" column="purpose" type="string" not-null="true"/>
+        <property name="purchaseDate" column="purchase_date" type="date" not-null="true"/>
+        <property name="status" column="status" type="string" not-null="true"/>
+
+        <many-to-one name="pharmacy" class="com.infinite.jsf.pharmacy.model.Pharmacy" column="pharmacy_id" not-null="true"/>
+        
+        <set name="dispensedEquipments" table="Dispensed_Equipments" inverse="true" lazy="true" cascade="all">
+			<key column="equipment_id"/>
+			<one-to-many class="com.infinite.jsf.pharmacy.model.DispensedEquipments"/>
+		</set>
+    </class>
+    
+    <query name="ShowEquipmentByName">
+    	from Equipment where equipment_name = :equipmentName
+    </query>
+    
+    <query name="ShowEquipmentBypharmacyId">
+    	from Equipment where pharmacy_id = :pharmacyId
+    </query>
+    
+</hibernate-mapping>

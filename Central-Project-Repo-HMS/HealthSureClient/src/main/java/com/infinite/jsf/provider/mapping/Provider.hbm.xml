@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.infinite.jsf.provider.model.Provider" table="Providers">
+    <id name="providerId" column="provider_id" type="string">
+      <generator class="assigned"/>
+    </id>
+
+    <property name="providerName" column="provider_name" type="string" not-null="true" length="100"/>
+    <property name="hospitalName" column="hospital_name" type="string" not-null="true" length="100"/>
+    <property name="email" column="email" type="string" not-null="true" length="100" unique="true"/>
+    <property name="address" column="address" type="string" not-null="true" length="225"/>
+    <property name="city" column="city" type="string" not-null="true" length="225"/>
+    <property name="state" column="state" type="string" not-null="true" length="225"/>
+    <property name="zipCode" column="zip_code" type="string" not-null="true" length="225"/>
+
+    <!-- Proper Enum Mapping for status -->
+    <property name="status">
+      <column name="status" sql-type="enum('PENDING','APPROVED','REJECTED')" not-null="true"/>
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">com.infinite.jsf.provider.model.ProviderStatus</param>
+        <param name="type">12</param>
+        <param name="useNamed">true</param>
+      </type>
+    </property>
+
+    <property name="createdAt" column="created_at" type="timestamp" not-null="true"/>
+
+    <!-- Relationships -->
+    <set name="doctors" table="Doctors" cascade="all-delete-orphan" lazy="true" inverse="true">
+      <key column="provider_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.provider.model.Doctor"/>
+    </set>
+
+    <set name="accounts" table="Accounts" cascade="all-delete-orphan" lazy="true" inverse="true">
+      <key column="provider_id" not-null="false"/>
+      <one-to-many class="com.infinite.jsf.provider.model.Account"/>
+    </set>
+
+    <set name="appointments" table="Appointment" inverse="true" lazy="true">
+      <key column="provider_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.provider.model.Appointment"/>
+    </set>
+
+    <set name="procedures" table="medical_procedure" inverse="true" lazy="true">
+      <key column="provider_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.provider.model.MedicalProcedure"/>
+    </set>
+
+    <set name="claims" table="Claims" inverse="true" lazy="true">
+      <key column="provider_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.provider.model.Claims"/>
+    </set>
+
+   <!--   <set name="paymentHistories" table="Payment_history" inverse="true" lazy="true">
+      <key column="provider_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.admin.model.PaymentHistory"/>
+    </set> -->
+  </class>
+</hibernate-mapping>

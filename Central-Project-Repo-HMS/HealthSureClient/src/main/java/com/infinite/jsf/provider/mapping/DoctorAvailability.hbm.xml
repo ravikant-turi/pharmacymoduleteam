@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.infinite.jsf.provider.model.DoctorAvailability" table="Doctor_Availability">
+
+    <id name="availabilityId" column="availability_id" type="string">
+      <generator class="assigned"/>
+    </id>
+
+    <!-- doctor mapped only once -->
+    <many-to-one name="doctor" class="com.infinite.jsf.provider.model.Doctor" column="doctor_id" not-null="true" fetch="join"/>
+
+    <property name="availableDate" column="available_date" type="date" not-null="true"/>
+    <property name="startTime" column="start_time" type="time" not-null="true"/>
+    <property name="endTime" column="end_time" type="time" not-null="true"/>
+
+    <property name="slotType">
+      <column name="slot_type" sql-type="varchar(20)" not-null="true"/>
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">com.infinite.jsf.provider.model.SlotType</param>
+        <param name="type">12</param>
+        <param name="useNamed">true</param>
+      </type>
+    </property>
+
+    <property name="maxCapacity" column="max_capacity" type="integer"/>
+    <property name="isRecurring" column="is_recurring" type="boolean"/>
+    <property name="notes" column="notes" type="string"/>
+    <property name="createdAt" column="created_at" type="timestamp"/>
+
+    <!-- One-to-one with Appointment -->
+    <one-to-one name="appointment" class="com.infinite.jsf.provider.model.Appointment" property-ref="availability" cascade="all"/>
+
+  </class>
+</hibernate-mapping>

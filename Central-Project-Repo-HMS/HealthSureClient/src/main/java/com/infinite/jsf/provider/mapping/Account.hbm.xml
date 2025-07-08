@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.infinite.jsf.provider.model">
+
+    <class name="Account" table="account">
+
+        <id name="accountId" column="account_id" type="integer">
+            <generator class="increment"/>
+        </id>
+
+        <many-to-one name="provider" column="provider_id" 
+                     class="com.infinite.jsf.provider.model.Provider" not-null="true"/>
+
+        <property name="bankName" column="bank_name" type="string" not-null="true"/>
+        <property name="ifscCode" column="ifsc_code" type="string" not-null="true"/>
+        <property name="accountNumber" column="account_number" type="string" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

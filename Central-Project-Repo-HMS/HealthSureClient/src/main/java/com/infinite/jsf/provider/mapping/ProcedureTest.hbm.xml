@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.infinite.jsf.provider.model.ProcedureTest" table="procedure_test">
+    <id name="testId" column="test_id" type="string">
+      <generator class="assigned"/>
+    </id>
+
+    <!-- Many-to-One Relationship -->
+    <many-to-one name="procedure" class="com.infinite.jsf.provider.model.MedicalProcedure" column="procedure_id" not-null="true" fetch="join"/>
+
+    <!-- Test Details -->
+    <property name="testName" column="test_name" type="string" not-null="true" length="100"/>
+    <property name="testDate" column="test_date" type="date" not-null="true"/>
+    <property name="resultSummary" column="result_summary" type="text"/>
+    <property name="status" column="status" type="string" not-null="true" length="50"/>
+    <property name="createdAt" column="created_at" type="timestamp" not-null="true"/>
+  </class>
+</hibernate-mapping>

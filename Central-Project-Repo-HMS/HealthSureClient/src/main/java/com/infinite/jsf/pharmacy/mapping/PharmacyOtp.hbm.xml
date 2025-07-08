@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.infinite.jsf.pharmacy.model.PharmacyOtp" table="Pharmacy_Otp">
+        
+        <id name="otpId" type="int">
+            <column name="otp_id" />
+            <generator class="identity"/>
+        </id>
+
+        <property name="pharmacyId" type="java.lang.String">
+            <column name="pharmacy_id" not-null="true" />
+        </property>
+
+        <property name="otpCode" type="java.lang.String">
+            <column name="otp_code" not-null="true" />
+        </property>
+
+     <!--   <property name="purpose" type="com.java.test.model.Purpose">
+            <column name="purpose" not-null="true" />
+        </property>   -->
+        
+        <property name="purpose">
+        <column name="purpose" not-null="true"/>
+        <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">com.infinite.jsf.pharmacy.model.Purpose</param>
+        <param name="type">12</param>
+        </type>
+        </property>
+        
+
+        <property name="newPassword" type="java.lang.String">
+            <column name="new_password" />
+        </property>
+
+       <!--  <property name="status" type="com.java.test.model.Status">
+            <column name="status" not-null="true" />
+        </property>  -->
+        
+        <property name="status">
+        <column name="status" not-null="true"/>
+        <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">com.infinite.jsf.pharmacy.model.Status</param>
+        <param name="type">12</param>
+        </type>
+        </property>
+        
+
+        <property name="createdAt" type="timestamp">
+            <column name="created_at" not-null="true" />
+        </property>
+
+        <property name="expiresAt" type="timestamp">
+            <column name="expires_at" not-null="true" />
+        </property>
+
+    </class>
+</hibernate-mapping>

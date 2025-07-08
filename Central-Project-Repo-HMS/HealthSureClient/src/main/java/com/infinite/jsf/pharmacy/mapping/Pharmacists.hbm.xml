@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.infinite.jsf.pharmacy.model.Pharmacists" table="Pharmacists" dynamic-update="true">
+
+        <id name="pharmacistId" column="pharmacist_id" type="string">
+            <generator class="assigned"/>
+        </id>
+
+        <property name="pharmacistName" column="pharmacist_name" type="string" not-null="true" length="100"/>
+        <property name="phoneNo" column="phone_no" type="string" not-null="true" length="15"/>
+        <property name="email" column="email" type="string" not-null="true" length="100"/>
+
+        <many-to-one name="pharmacy" class="com.infinite.jsf.pharmacy.model.Pharmacy" column="pharmacy_id" not-null="true"/>
+
+        <!-- Optional reverse mapping for dispensed entries -->
+        <set name="dispensedMedicines" table="Dispensed_Medicines" inverse="true" lazy="true" cascade="all">
+            <key column="pharmacist_id"/>
+            <one-to-many class="com.infinite.jsf.pharmacy.model.DispensedMedicines"/>
+        </set>
+
+        <set name="dispensedEquipments" table="Dispensed_Equipments" inverse="true" lazy="true" cascade="all">
+            <key column="pharmacist_id"/>
+            <one-to-many class="com.infinite.jsf.pharmacy.model.DispensedEquipments"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

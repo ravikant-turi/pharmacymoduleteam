@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.infinite.jsf.provider.model.Claims" table="Claims">
+    <id name="claimId" column="claim_id" type="string">
+      <generator class="assigned"/>
+    </id>
+
+    <!-- Many-to-One Relationships -->
+    <many-to-one name="coverage" class="com.infinite.jsf.insurance.model.Subscribe" column="coverage_id" not-null="true" fetch="join"/>
+
+    <many-to-one name="procedure" class="com.infinite.jsf.provider.model.MedicalProcedure" column="procedure_id" not-null="true" fetch="join"/>
+
+    <many-to-one name="provider" class="com.infinite.jsf.provider.model.Provider" column="provider_id" not-null="true" fetch="join"/>
+
+    <many-to-one name="recipient" class="com.infinite.jsf.recipient.model.Recipient" column="h_id" not-null="true" fetch="join"/>
+
+    <!-- Enum Mapping for Claim Status -->
+    <property name="claimStatus">
+      <column name="claim_status" sql-type="enum('PENDING','APPROVED','DENIED')" not-null="true"/>
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">com.infinite.jsf.provider.model.ClaimStatus</param>
+        <param name="type">12</param>
+        <param name="useNamed">true</param>
+      </type>
+    </property>
+
+    <!-- Date and Amount Fields -->
+    <property name="claimDate" column="claim_date" type="timestamp" not-null="true"/>
+    
+    <property name="amountClaimed"  type="big_decimal" not-null="true">
+      <column name="amount_claimed" precision="10" scale="2"/>
+    </property>
+    
+    <property name="amountApproved" type="big_decimal">
+      <column name="amount_approved" precision="10" scale="2" default="0.00"/>
+    </property>
+
+    <!-- One-to-Many Relationship -->
+    <list name="claimHistories" table="Claim_history" cascade="all-delete-orphan" lazy="true" inverse="true">
+      <key column="claim_id" not-null="true"/>
+      <list-index column="history_index"/>
+      <one-to-many class="com.infinite.jsf.provider.model.ClaimHistory"/>
+    </list>
+  </class>
+</hibernate-mapping>

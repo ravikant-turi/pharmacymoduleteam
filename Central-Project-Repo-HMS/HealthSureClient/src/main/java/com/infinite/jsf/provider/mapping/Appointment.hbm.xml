@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.infinite.jsf.provider.model.Appointment" table="Appointment">
+    <id name="appointmentId" column="appointment_id" type="string">
+      <generator class="assigned"/>
+    </id>
+
+    <many-to-one name="doctor" class="com.infinite.jsf.provider.model.Doctor" column="doctor_id" not-null="true" fetch="join"/>
+
+    <many-to-one name="recipient" class="com.infinite.jsf.recipient.model.Recipient" column="h_id" not-null="true" fetch="join"/>
+    <many-to-one name="availability" class="com.infinite.jsf.provider.model.DoctorAvailability" column="availability_id" not-null="true" fetch="join"/>
+
+    <many-to-one name="provider" class="com.infinite.jsf.provider.model.Provider" column="provider_id" not-null="true" fetch="join"/>
+
+    <property name="requestedAt" column="requested_at" type="timestamp" not-null="true"/>
+    <property name="bookedAt" column="booked_at" type="timestamp" not-null="false"/>
+    
+   <property name="status">
+    <column name="status" sql-type="enum('PENDING','BOOKED','CANCELLED','COMPLETED')" not-null="true"/>
+    <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">com.infinite.jsf.provider.model.AppointmentStatus</param>
+        <param name="type">12</param>
+        <param name="useNamed">true</param>
+    </type>
+</property>
+    
+    <property name="notes" column="notes" type="text" not-null="false"/>
+
+    <set name="procedures" table="medical_procedure" cascade="all-delete-orphan" inverse="true" lazy="true">
+      <key column="appointment_id" not-null="true"/>
+      <one-to-many class="com.infinite.jsf.provider.model.MedicalProcedure"/>
+    </set>
+  </class>
+</hibernate-mapping>

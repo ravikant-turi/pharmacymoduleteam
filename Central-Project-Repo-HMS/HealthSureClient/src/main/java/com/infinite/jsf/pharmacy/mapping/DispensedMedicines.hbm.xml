@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.infinite.jsf.pharmacy.model.DispensedMedicines" table="Dispensed_Medicines">
+        
+        <id name="dispenseId" column="dispense_id" type="string" />
+
+        <many-to-one name="medicines" class="com.infinite.jsf.pharmacy.model.Medicines"
+                     column="medicine_id" not-null="true" />
+
+        <many-to-one name="pharmacy" class="com.infinite.jsf.pharmacy.model.Pharmacy"
+                     column="pharmacy_id" not-null="true" />
+
+        <property name="quantityDispensed" column="quantity_dispensed" type="int" not-null="true" />
+        <property name="dispenseDate" column="dispense_date" type="date" not-null="true" />
+        <property name="prescriptionId" column="prescription_id" type="string" not-null="true" />
+        <property name="doctorId" column="doctor_id" type="string" not-null="true" />
+        <property name="hId" column="h_id" type="string" not-null="true" />
+        <property name="pharmacistName" column="pharmacist_name" type="string" not-null="true" />
+
+    </class>
+    
+    <query name="SoldMedicine.findByFilters">
+        <![CDATA[
+            from DispensedMedicines dm
+            where dm.dispenseDate >= :fromDate and dm.dispenseDate <= :toDate
+            and (:hId is null or dm.hId = :hId)
+            and (:prescriptionId is null or dm.prescriptionId = :prescriptionId)
+            and (:doctorId is null or dm.doctorId = :doctorId)
+        ]]>
+    </query>
+    
+</hibernate-mapping>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+              version="2.0" metadata-complete="false">
+
+    <!-- ✅ MODEL BEANS (Provider) -->
+    <managed-bean>
+        <managed-bean-name>appointment</managed-bean-name>
+        <managed-bean-class>com.infinite.jsf.provider.model.Appointment</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>doctor</managed-bean-name>
+        <managed-bean-class>com.infinite.jsf.provider.model.Doctor</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>provider</managed-bean-name>
+        <managed-bean-class>com.infinite.jsf.provider.model.Provider</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <!-- ✅ MODEL BEANS (Recipient) -->
+    <managed-bean>
+        <managed-bean-name>recipient</managed-bean-name>
+        <managed-bean-class>com.infinite.jsf.recipient.model.Recipient</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <!-- ✅ Additional Models -->
+    <managed-bean>
+        <managed-bean-name>medicalProcedure</managed-bean-name>
+        <managed-bean-class>com.infinite.jsf.provider.model.MedicalProcedure</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>prescription</managed-bean-name>
+        <managed-bean-class>com.infinite.jsf.provider.model.Prescription</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>procedureTest</managed-bean-name>
+        <managed-bean-class>com.infinite.jsf.provider.model.ProcedureTest</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <!-- ✅ DAO BEAN -->
+    <managed-bean>
+        <managed-bean-name>insuranceDaoImpl</managed-bean-name>
+        <managed-bean-class>com.infinite.jsf.recipient.daoImpl.InsuranceDaoImpl</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
+    <!-- ✅ CONTROLLER -->
+    <managed-bean>
+        <managed-bean-name>recipientController</managed-bean-name>
+        <managed-bean-class>com.infinite.jsf.recipient.controller.RecipientController</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+
+        <managed-property>
+            <property-name>medicalProcedure</property-name>
+            <property-class>com.infinite.jsf.provider.model.MedicalProcedure</property-class>
+            <value>#{medicalProcedure}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>insuranceDaoImpl</property-name>
+            <property-class>com.infinite.jsf.recipient.daoImpl.InsuranceDaoImpl</property-class>
+            <value>#{insuranceDaoImpl}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>hId</property-name>
+            <property-class>java.lang.String</property-class>
+            <value></value>
+        </managed-property>
+    </managed-bean>
+    
+    <!-- Pharmacy -->
+    
+    <managed-bean>
+    <managed-bean-name>pharmacy</managed-bean-name>
+    <managed-bean-class>com.infinite.jsf.pharmacy.model.Pharmacy</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+        <managed-bean>
+    <managed-bean-name>pharmacyOtp</managed-bean-name>
+    <managed-bean-class>com.infinite.jsf.pharmacy.model.PharmacyOtp</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+    <managed-bean-name>pharmacyDao</managed-bean-name>
+    <managed-bean-class>com.infinite.jsf.pharmacy.daoImpl.PharmacyDaoImpl</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+       <managed-bean>
+    <managed-bean-name>medicinesDao</managed-bean-name>
+    <managed-bean-class>com.infinite.jsf.pharmacy.daoImpl.MedicinesDaoImpl</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+       <managed-bean>
+    <managed-bean-name>equipmentDao</managed-bean-name>
+    <managed-bean-class>com.infinite.jsf.pharmacy.daoImpl.EquipmentDaoImpl</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+       <!-- controller -->
+    <managed-bean>
+    <managed-bean-name>controller</managed-bean-name>
+    <managed-bean-class>com.infinite.jsf.pharmacy.controller.PharmacyController</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+    <managed-property>
+    <property-name>pharmacy</property-name>
+    <property-class>com.infinite.jsf.pharmacy.model.Pharmacy</property-class>
+    <value>#{pharmacy}</value>
+    </managed-property> 
+
+
+
+
+    <managed-property>
+    <property-name>pharmacyDao</property-name>
+    <property-class>com.infinite.jsf.pharmacy.daoImpl.PharmacyDaoImpl</property-class>
+    <value>#{pharmacyDao}</value>
+    </managed-property>
+    
+    
+    </managed-bean>
+    
+    <managed-bean>
+    <managed-bean-name>viewController</managed-bean-name>
+    <managed-bean-class>com.infinite.jsf.pharmacy.controller.ViewStocksController</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+    
+    <managed-property>
+    <property-name>medicinesDao</property-name>
+    <property-class>com.infinite.jsf.pharmacy.daoImpl.MedicinesDaoImpl</property-class>
+    <value>#{medicinesDao}</value>
+</managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+    <managed-bean-name>viewEquipmentController</managed-bean-name>
+    <managed-bean-class>com.infinite.jsf.pharmacy.controller.ViewEquipmentController</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+    
+        <managed-property>
+    <property-name>equipmentDao</property-name>
+    <property-class>com.infinite.jsf.pharmacy.daoImpl.EquipmentDaoImpl</property-class>
+    <value>#{equipmentDao}</value>
+</managed-property>
+    </managed-bean>
+           
+       <!-- server Side -->
+       
+    <managed-bean>
+    <managed-bean-name>ejbMedicine</managed-bean-name>
+    <managed-bean-class>com.infinite.ejb.pharmacy.model.Medicines</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+     <managed-bean>
+    <managed-bean-name>ejbEquipment</managed-bean-name>
+    <managed-bean-class>com.infinite.ejb.pharmacy.model.Equipment</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+     <managed-bean>
+    <managed-bean-name>pharmacyEjbImpl</managed-bean-name>
+    <managed-bean-class>com.infinite.ejb.pharmacy.beanImpl.PharmacyEjbImpl</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <!-- server controller -->
+    
+    <managed-bean>
+    <managed-bean-name>ejbController</managed-bean-name>
+    <managed-bean-class>com.infinite.jsf.pharmacy.controller</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+    
+    <managed-property>
+    <property-name>ejbMedicine</property-name>
+    <property-class>com.infinite.ejb.pharmacy.model.Medicines</property-class>
+    <value>#{ejbMedicine}</value>
+    </managed-property>
+    </managed-bean>
+
+</faces-config>

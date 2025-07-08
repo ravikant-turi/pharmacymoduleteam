@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/healthsuremain</property>
+		<property name="hibernate.connection.password">ROOT</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+
+		<!-- Insurance Module -->
+		<mapping
+			resource="com/infinite/jsf/insurance/mapping/InsuranceCompany.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/insurance/mapping/InsuranceCoverageOption.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/insurance/mapping/InsurancePlan.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/insurance/mapping/Subscribe.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/insurance/mapping/SubscribedMember.hbm.xml" />
+
+		<!-- Provider Module -->
+		<mapping
+			resource="com/infinite/jsf/provider/mapping/Appointment.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/provider/mapping/DoctorAvailability.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/provider/mapping/ClaimHistory.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/provider/mapping/Claims.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/provider/mapping/Doctor.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/provider/mapping/MedicalProcedure.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/provider/mapping/Prescription.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/provider/mapping/ProcedureTest.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/provider/mapping/Account.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/provider/mapping/Provider.hbm.xml" />
+			
+			
+
+		<!-- Recipient Module -->
+        <mapping resource="com/infinite/jsf/recipient/mapping/Recipient.hbm.xml" />
+			
+			
+
+		<!-- Pharmacy Module 
+		<mapping
+			resource="com/infinite/jsf/pharmacy/mapping/DispensedMedicine.hbm.xml" />
+		<mapping
+			resource="com/infinite/jsf/pharmacy/mapping/DispensedEquipment.hbm.xml" /> -->
+
+		<!-- Admin Module
+		<mapping
+			resource="com/infinite/jsf/admin/mapping/PaymentHistory.hbm.xml" />  -->
+			
+			<!-- ....................pharmacy Module............. -->
+
+        <mapping resource="com/infinite/jsf/pharmacy/mapping/Pharmacy.hbm.xml" />
+        <mapping resource="com/infinite/jsf/pharmacy/mapping/PharmacyOtp.hbm.xml" />
+        <mapping resource="com/infinite/jsf/pharmacy/mapping/Passwords.hbm.xml"/>
+        <mapping resource="com/infinite/jsf/pharmacy/mapping/Medicines.hbm.xml" />
+         <mapping resource="com/infinite/jsf/pharmacy/mapping/Equipment.hbm.xml" />
+          <mapping resource="com/infinite/jsf/pharmacy/mapping/Pharmacists.hbm.xml" />
+           <mapping resource="com/infinite/jsf/pharmacy/mapping/DispensedMedicines.hbm.xml" />
+           <mapping resource="com/infinite/jsf/pharmacy/mapping/DispensedEquipments.hbm.xml" />
+
+
+	</session-factory>
+</hibernate-configuration>
