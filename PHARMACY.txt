@@ -32,6 +32,8 @@ INSERT INTO Pharmacy VALUES
 ('PH004', 'CareFirst Meds', '9012345678', 'hello@carefirst.org', 'passWord77', CURRENT_TIMESTAMP, 'Tamil Nadu', 'Chennai', 'LIC76543', 'Active', 'GSTIN3210TN', '600002', '23 Cathedral Road', 'Meena', 'Lakshmi', 'Ravi', 'Female', '9012345679', 'meena.ravi@carefirst.org', 'AADHAR345678', 'Bungalow No.4, Nungambakkam'),
  
 ('PH005', 'Trust Pharmacy', '9823456789', 'trust@pharmacy.net', 'trusTPwd33', CURRENT_TIMESTAMP, 'West Bengal', 'Kolkata', 'LIC11223', 'Inactive', 'GSTIN1234WB', '700001', '88 Park Street', 'Vikram', NULL, 'Sen', 'Male', '9823456790', 'vikram.sen@trustpharmacy.net', 'AADHAR901234', 'Flat 10, Ballygunge Place');
+ INSERT INTO Pharmacy VALUES 
+('PH006', 'HealthPluss Pharmacy', '9876543910', 'turiravikant@gmail.com', 'securePass011', CURRENT_TIMESTAMP, 'Karnataka', 'Bengaluru', 'LIC12949', 'Active', 'GSTIN1294KP', '560001', '12 MG Road', 'Raj', NULL, 'Kumar', 'Male', '9876543211', 'rajkumar@healthplus.com', 'AADHAR103456', '45 Residency Road');
  
  
 CREATE TABLE passwords (
