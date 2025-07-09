@@ -1,9 +1,11 @@
 package com.infinite.jsf.pharmacy.controller;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
 import com.infinite.jsf.pharmacy.dao.ReviewPharmacyaDao;
 import com.infinite.jsf.pharmacy.daoImpl.ReviewPharmacyaDaoImpl;
 import com.infinite.jsf.pharmacy.model.DispensedEquipments;
@@ -15,13 +17,14 @@ import com.infinite.jsf.pharmacy.model.Pharmacists;
 import com.infinite.jsf.pharmacy.model.Pharmacy;
 import com.infinite.jsf.util.MailSend;
 
+/*ashdkas*/
 public class ReviewPharmacyController {
 
 	private Pharmacy pharmacy;
 
 	private ReviewPharmacyaDao reviewPharmacyaDao = new ReviewPharmacyaDaoImpl();
 
-	private Medicines medicines;
+	private Medicines medicines; 
 
 	private Equipment equipment;
 
@@ -48,7 +51,76 @@ public class ReviewPharmacyController {
  */
 	
 	
+	private List<Pharmacy> allPharmacies;
+	private List<Pharmacy> paginatedPharmacies;
+	private int page = 0;
+	private int pageSize = 5;
+	private String sortField = "pharmacyId";
+	private boolean ascending = true;
 	
+
+
+	public int getTotalPages() {
+	    return (int) Math.ceil((double) allPharmacies.size() / pageSize);
+	}
+
+	public ReviewPharmacyController() {
+	    allPharmacies = reviewPharmacyaDao.reviewPharmacyDetails();
+	    sortAndPaginate();
+	}
+
+	public void sort(String field) {
+	    if (sortField.equals(field)) {
+	        ascending = !ascending;
+	    } else {
+	        sortField = field;
+	        ascending = true;
+	    }
+	    sortAndPaginate();
+	}
+
+	public void nextPage() {
+	    if ((page + 1) * pageSize < allPharmacies.size()) {
+	        page++;
+	        sortAndPaginate();
+	    }
+	}
+
+	public void previousPage() {
+	    if (page > 0) {
+	        page--;
+	        sortAndPaginate();
+	    }
+	}
+
+	private void sortAndPaginate() {
+	    Comparator<Pharmacy> comparator = Comparator.comparing(p -> {
+	        switch (sortField) {
+	            case "pharmacyName": return p.getPharmacyName();
+	            case "contactNo": return p.getContactNo();
+	            case "aadhar": return p.getAadhar();
+	            case "licenseNo": return p.getLicenseNo();
+	            case "gstNo": return p.getGstNo();
+	            case "status": return p.getStatus();
+	            default: return p.getPharmacyId();
+	        }
+	    });
+
+	    if (!ascending) {
+	        comparator = comparator.reversed();
+	    }
+
+	    allPharmacies.sort(comparator);
+
+	    int fromIndex = page * pageSize;
+	    int toIndex = Math.min(fromIndex + pageSize, allPharmacies.size());
+	    paginatedPharmacies = allPharmacies.subList(fromIndex, toIndex);
+	}
+
+	public List<Pharmacy> getPaginatedPharmacies() {
+	    return paginatedPharmacies;
+	}
+
 	
 	
 	
@@ -259,6 +331,50 @@ public class ReviewPharmacyController {
 
 	public void setShowValidatinMessage(String showValidatinMessage) {
 		this.showValidatinMessage = showValidatinMessage;
+	}
+
+	public List<Pharmacy> getAllPharmacies() {
+		return allPharmacies;
+	}
+
+	public void setAllPharmacies(List<Pharmacy> allPharmacies) {
+		this.allPharmacies = allPharmacies;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public String getSortField() {
+		return sortField;
+	}
+
+	public void setSortField(String sortField) {
+		this.sortField = sortField;
+	}
+
+	public boolean isAscending() {
+		return ascending;
+	}
+
+	public void setAscending(boolean ascending) {
+		this.ascending = ascending;
+	}
+
+	public void setPaginatedPharmacies(List<Pharmacy> paginatedPharmacies) {
+		this.paginatedPharmacies = paginatedPharmacies;
 	}
 
 }
