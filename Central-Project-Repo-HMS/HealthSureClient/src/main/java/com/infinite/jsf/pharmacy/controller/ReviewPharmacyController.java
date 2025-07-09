@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.sound.midi.ShortMessage;
-
 import com.infinite.jsf.pharmacy.dao.ReviewPharmacyaDao;
 import com.infinite.jsf.pharmacy.daoImpl.ReviewPharmacyaDaoImpl;
 import com.infinite.jsf.pharmacy.model.DispensedEquipments;
@@ -43,8 +41,19 @@ public class ReviewPharmacyController {
 		pharmaciesList = reviewPharmacyaDao.reviewPharmacyDetails();
 		return pharmaciesList;
 	}
+	
+	
+/*
+ * PAGINATION AND SORTING	
+ */
+	
+	
+	
+	
+	
+	
 
-//	validation 
+//	update pharmacy
 
 	/*
 	 * 
@@ -56,7 +65,7 @@ public class ReviewPharmacyController {
 		FacesContext context=FacesContext.getCurrentInstance();
 		
 		if(pharmacy.getStatus().equals("ACCEPTED")) {
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,pharmacy.getPharmacyId()+"Already Approved ",null));
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,pharmacy.getPharmacyId()+"  Already Approved ",null));
             return null;
 		}
 
