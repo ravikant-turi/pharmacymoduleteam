@@ -69,7 +69,7 @@ public class ReviewPharmacyaDaoImpl implements ReviewPharmacyaDao {
 
 	    String email = pharmacy.getEmail();
 
-	    MailSend.sendInfo(email, "Your pharmacy s has been ACCPTED" ,"RAVIKANT TURI");
+	    MailSend.sendInfo(email, "PHARMACY STATUS : ACCETPED " ,"\n Congratulations !!  Your pharmacy s has been ACCPTED \n\n ADMIN : \n RAVIKANT TURI");
 
 	    trans.commit();
 	    session.close();
