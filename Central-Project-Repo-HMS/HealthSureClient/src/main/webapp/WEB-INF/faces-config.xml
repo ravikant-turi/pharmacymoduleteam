@@ -67,7 +67,7 @@
     <!-- 📂 Review Pharmacy DAO Bean -->
     <managed-bean>
         <managed-bean-name>reviewPharmacyaDao</managed-bean-name>
-        <managed-bean-class>com.infinite.jsf.pharmacy.daoImpl.ReviewPharmacyaDaoImpl</managed-bean-class>
+        <managed-bean-class>com.infinite.jsf.admin.daoImpl.ReviewPharmacyaDaoImpl</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 
@@ -78,7 +78,7 @@
     <!-- 🎯 Review Pharmacy Controller Bean -->
     <managed-bean>
         <managed-bean-name>reviewPharmacyController</managed-bean-name>
-        <managed-bean-class>com.infinite.jsf.pharmacy.controller.ReviewPharmacyController</managed-bean-class>
+        <managed-bean-class>com.infinite.jsf.admin.controller.ReviewPharmacyController</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
 
         <!-- Inject DAO -->

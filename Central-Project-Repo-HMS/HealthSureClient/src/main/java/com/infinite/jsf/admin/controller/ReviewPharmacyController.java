@@ -1,4 +1,4 @@
-package com.infinite.jsf.pharmacy.controller;
+package com.infinite.jsf.admin.controller;
 
 import java.util.Comparator;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import com.infinite.jsf.pharmacy.dao.ReviewPharmacyaDao;
-import com.infinite.jsf.pharmacy.daoImpl.ReviewPharmacyaDaoImpl;
+import com.infinite.jsf.admin.dao.ReviewPharmacyaDao;
+import com.infinite.jsf.admin.daoImpl.ReviewPharmacyaDaoImpl;
 import com.infinite.jsf.pharmacy.model.DispensedEquipments;
 import com.infinite.jsf.pharmacy.model.DispensedMedicines;
 import com.infinite.jsf.pharmacy.model.Equipment;
@@ -17,12 +17,12 @@ import com.infinite.jsf.pharmacy.model.Pharmacists;
 import com.infinite.jsf.pharmacy.model.Pharmacy;
 import com.infinite.jsf.util.MailSend;
 
-/*ashdkas*/
+/*This controller is for pharmacy review and approval*/
 public class ReviewPharmacyController {
 
 	private Pharmacy pharmacy;
 
-	private ReviewPharmacyaDao reviewPharmacyaDao = new ReviewPharmacyaDaoImpl();
+	private ReviewPharmacyaDao reviewPharmacyaDao=new ReviewPharmacyaDaoImpl();
 
 	private Medicines medicines; 
 
@@ -144,14 +144,16 @@ public class ReviewPharmacyController {
 		if (validatePharmacyDetails(pharmacy)) {
 			
 			
-			reviewPharmacyaDao.updatePharmacyStatus(pharmacy);
+			reviewPharmacyaDao.updatePharmacyStatus(pharmacy,"ACCEPTED");
 			
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,pharmacy.getPharmacyId()+"Approved succussfully",null));
 			
 			showValidatinMessage=pharmacy.getPharmacyId()+"Approved succussfully";
 			
 		}else {
-			MailSend.sendInfo(pharmacy.getEmail(), " PHARMACY STATUS : REJECTED " , showValidatinMessage +"  \n  BY Adimin :  \n Ravikant Turi"); 
+			reviewPharmacyaDao.updatePharmacyStatus(pharmacy,"REJECTED");
+
+			MailSend.sendInfo(pharmacy.getEmail(), " PHARMACY STATUS : REJECTED " , showValidatinMessage +"  \n By Admin :  \n Ravikant Turi"); 
 		}
 
 		return null;
@@ -227,14 +229,14 @@ public class ReviewPharmacyController {
 		if (aadhar == null || !aadhar.matches("AADHAR\\d{6}")) {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Aadhar",
 					"Must start with 'AADHAR' followed by 6 digits."));
-			showValidatinMessage= "  Invalid Aadhar !! ;Must start with 'AADHAR' followed by 6 digits. And  Your Adhar is "+ aadhar;
+			showValidatinMessage= "Invalid Aadhar !! ;Must start with 'AADHAR' followed by 6 digits. And  Your Adhar is "+ aadhar;
 			isValid = false;
 		}
-
+		
 		if (licenseNo == null || !licenseNo.matches("LIC\\d{5}")) {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid License No",
 					"Must start with 'LIC' followed by 5 digits."));
-			showValidatinMessage +=" \n\n  Invalid License No !! Must start with 'LIC' followed by 5 digits. And Your LICENSE NO : "+ licenseNo;
+			showValidatinMessage +="\n\nInvalid License No! \n . And Your LICENSE NO : " + licenseNo + "\n Must start with 'LIC' followed by 5 digits";
 			isValid = false;
 		}
 
@@ -242,7 +244,7 @@ public class ReviewPharmacyController {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid GST No",
 					"Must start with 'GSTIN', followed by 4 digits and end with 2 uppercase letters."));
 			
-			showValidatinMessage +=" \n\n Invalid GST No Must start with 'GSTIN', followed by 4 digits and end with 2 uppercase letters. AND YOUR  GST No"+gstNo;
+			showValidatinMessage +="\n\nInvalid GST No Must start with 'GSTIN', followed by 4 digits and end with 2 uppercase letters. AND YOUR  GST No"+gstNo;
 			isValid = false;
 		}
 

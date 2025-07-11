@@ -98,6 +98,11 @@ td {
 	font-weight: bold;
 	margin: 0;
 }
+th a, th a:visited {
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
 </style>
 </head>
 <body>
@@ -114,9 +119,12 @@ td {
 		Validating, please wait...</div>
 
 
-	<!-- ✅ Global Messages -->
 	<h:messages id="globalMessages" globalOnly="true"
-		styleClass="message-box" />
+    style="position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
+           background-color: #e3f2fd; color: #0d47a1; padding: 12px 24px;
+           border: 1px solid #90caf9; border-radius: 8px; font-size: 15px;
+           z-index: 9999; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); text-align: center;
+           width: auto; max-width: 90%;" />
 
 	<!-- ✅ JavaScript for loader and message -->
 	<Script>
@@ -195,8 +203,10 @@ td {
 					</f:facet>
 					<h:commandButton value="Validate"
 						action="#{reviewPharmacyController.validatePharmacy(pharmacy)}"
-                          disabled="#{pharmacy.status eq 'ACCEPTED'}"
-						onclick="showLoader()" styleClass="action-button" />
+                         disabled="#{pharmacy.status eq 'ACCEPTED' or pharmacy.status eq 'REJECTED'}"
+
+                          
+						 onclick="showLoader()" styleClass="action-button" />
 						
 				</h:column>
 

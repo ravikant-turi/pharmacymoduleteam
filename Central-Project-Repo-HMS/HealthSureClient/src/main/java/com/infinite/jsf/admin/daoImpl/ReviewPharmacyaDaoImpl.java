@@ -1,8 +1,7 @@
-package com.infinite.jsf.pharmacy.daoImpl;
+package com.infinite.jsf.admin.daoImpl;
 
 import java.util.List;
 
-import javax.management.j2ee.statistics.JavaMailStats;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -10,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.infinite.jsf.pharmacy.model.Pharmacy;
-import com.infinite.jsf.pharmacy.dao.ReviewPharmacyaDao;
+import com.infinite.jsf.admin.dao.ReviewPharmacyaDao;
 import com.infinite.jsf.util.MailSend;
 import com.infinite.jsf.util.SessionHelper;
 
@@ -56,14 +55,15 @@ public class ReviewPharmacyaDaoImpl implements ReviewPharmacyaDao {
 	}
 
 	@Override
-	public String updatePharmacyStatus(Pharmacy pharmacy) {
+	public String updatePharmacyStatus(Pharmacy pharmacy,String status) {
 	    session = factory.openSession();
 	    Transaction trans = session.beginTransaction();
 
 	    String pharmacyId = pharmacy.getPharmacyId(); 
 	  
 
-	    pharmacy.setStatus("ACCEPTED");
+	    pharmacy.setStatus(status);
+	    
 	    session.update(pharmacy);
 
 

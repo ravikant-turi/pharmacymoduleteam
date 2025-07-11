@@ -1,4 +1,4 @@
-package com.infinite.jsf.pharmacy.dao;
+package com.infinite.jsf.admin.dao;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ public interface ReviewPharmacyaDao {
 	
 	Pharmacy searchPharmacyById(String pharmacyId);
 	
-	String updatePharmacyStatus(Pharmacy pharmacy);
+	String updatePharmacyStatus(Pharmacy pharmacy,String status);
 
 }
