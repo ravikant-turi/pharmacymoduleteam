@@ -190,7 +190,7 @@ window.onload = function() {
       msgBox.style.display = 'none';
     }
     document.getElementById('loader').style.display = 'none';
-  }, 10000);
+  }, 900000);
 };
 </script>
 
