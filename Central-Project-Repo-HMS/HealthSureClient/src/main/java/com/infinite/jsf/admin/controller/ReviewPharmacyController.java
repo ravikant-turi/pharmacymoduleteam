@@ -96,6 +96,32 @@ public class ReviewPharmacyController {
 		sortAndPaginate();
 	}
 
+	public void sortByAsc(String field) {
+		if (!field.equals(sortField) || !ascending) {
+			// If this is a new field or the current order is not ascending, update sort
+			sortField = field;
+			ascending = true;
+			if (logger.isDebugEnabled()) {
+				logger.debug("Sorting pharmacies by field: " + sortField + ", ascending: true");
+			}
+			sortAndPaginate();
+		}
+		// If already sorting ascending on this field, you may skip or re-apply
+	}
+
+	public void sortByDesc(String field) {
+		if (!field.equals(sortField) || ascending) {
+			// If this is a new field or the current order is ascending, update sort
+			sortField = field;
+			ascending = false;
+			if (logger.isDebugEnabled()) {
+				logger.debug("Sorting pharmacies by field: " + sortField + ", ascending: false");
+			}
+			sortAndPaginate();
+		}
+		// If already sorting descending on this field, you may skip or re-apply
+	}
+
 	public void nextPage() {
 		if ((page + 1) * pageSize < allPharmacies.size()) {
 			page++;
