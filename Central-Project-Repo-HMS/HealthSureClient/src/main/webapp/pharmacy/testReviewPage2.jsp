@@ -44,6 +44,7 @@ h\:dataTable {
 	border-collapse: separate;
 	border-spacing: 0 12px; /* Adds vertical space between rows */
 	margin-top: 20px;
+	margin-left: 10px;
 }
 
 h\:column, th, td {
@@ -226,6 +227,7 @@ th a, th a:visited {
 	<!-- Pharmacy Table -->
 	<div class="table-container">
 		<h:form>
+<h2 style="text-align: center;">PHARMACY REVIEW AND APPROVAL</h2>
 			<h:dataTable value="#{reviewPharmacyController.paginatedPharmacies}"
 				var="pharmacy" border="1">
 
