@@ -17,6 +17,7 @@ body {
 	margin: 0;
 }
 
+a
 .table-container {
 	display: flex;
 	justify-content: center; column;
@@ -98,11 +99,29 @@ td {
 	font-weight: bold;
 	margin: 0;
 }
+
 th a, th a:visited {
-    color: #ffffff !important;
-    text-decoration: none;
+	color: #ffffff !important;
+	text-decoration: none;
 }
 
+/* Make the h:dataTable a horizontal flex row, with no default table look */
+.page-nav-row, .page-nav-row table, .page-nav-row tbody, .page-nav-row tr
+	{
+	display: flex !important;
+	flex-direction: row !important;
+	border: none !important;
+	background: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.page-nav-row td {
+	border: none !important;
+	background: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
 </style>
 </head>
 <body>
@@ -120,7 +139,7 @@ th a, th a:visited {
 
 
 	<h:messages id="globalMessages" globalOnly="true"
-    style="position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
+		style="position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
            background-color: #e3f2fd; color: #0d47a1; padding: 12px 24px;
            border: 1px solid #90caf9; border-radius: 8px; font-size: 15px;
            z-index: 9999; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); text-align: center;
@@ -203,11 +222,9 @@ th a, th a:visited {
 					</f:facet>
 					<h:commandButton value="Validate"
 						action="#{reviewPharmacyController.validatePharmacy(pharmacy)}"
-                         disabled="#{pharmacy.status eq 'ACCEPTED' or pharmacy.status eq 'REJECTED'}"
+						disabled="#{pharmacy.status eq 'ACCEPTED' or pharmacy.status eq 'REJECTED'}"
+						onclick="showLoader()" styleClass="action-button" />
 
-                          
-						 onclick="showLoader()" styleClass="action-button" />
-						
 				</h:column>
 
 				<h:column>
@@ -220,22 +237,37 @@ th a, th a:visited {
 
 			</h:dataTable>
 
-			<!-- Pagination Controls -->
-			<div style="text-align: center; margin-top: 30px;">
-				<h:outputText
-					value="Page #{reviewPharmacyController.page + 1} of #{reviewPharmacyController.totalPages}"
-					style="margin-right: 20px; font-weight: bold;" />
 
-				<h:commandButton value="Previous"
-					action="#{reviewPharmacyController.previousPage}"
-					disabled="#{reviewPharmacyController.page eq 0}"
-					style="margin-right: 10px;" styleClass="action-button" />
+			<div
+				style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
 
-				<h:commandButton value="Next"
-					action="#{reviewPharmacyController.nextPage}"
-					disabled="#{reviewPharmacyController.page + 1 ge reviewPharmacyController.totalPages}"
-					style="margin-left: 10px;" styleClass="action-button" />
+				<!-- Left side: page number buttons in one row -->
+				<h:dataTable value="#{reviewPharmacyController.pageNumbers}"
+					var="pageNum" styleClass="page-nav-row"
+					style="border: none; margin: 0; padding: 0;">
+					<h:column>
+						<h:commandButton value="#{pageNum}"
+							action="#{reviewPharmacyController.goToPage(pageNum)}"
+							disabled="#{pageNum == reviewPharmacyController.page + 1}"
+							style="margin-right: 5px;" styleClass="action-button" />
+					</h:column>
+				</h:dataTable>
+
+				<!-- Right side: Previous and Next buttons -->
+				<div>
+					<h:commandButton value="Previous"
+						action="#{reviewPharmacyController.previousPage}"
+						disabled="#{reviewPharmacyController.page eq 0}"
+						style="margin-right: 10px;" styleClass="action-button" />
+
+					<h:commandButton value="Next"
+						action="#{reviewPharmacyController.nextPage}"
+						disabled="#{reviewPharmacyController.page + 1 ge reviewPharmacyController.totalPages}"
+						styleClass="action-button" />
+				</div>
+
 			</div>
+
 
 		</h:form>
 

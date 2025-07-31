@@ -20,6 +20,7 @@
  */
 package com.infinite.jsf.admin.controller;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -201,7 +202,41 @@ public class ReviewPharmacyController {
 
 		return null;
 	}
+//-===================
 
+	public List<Integer> getPageNumbers() {
+	    List<Integer> pages = new ArrayList<>();
+	    int totalPages = getTotalPages();
+	    int windowSize = 5;
+	    int currentWindow = page / windowSize;
+	    int startPage = currentWindow * windowSize + 1;
+	    int endPage = Math.min(startPage + windowSize - 1, totalPages);
+	    for (int i = startPage; i <= endPage; i++) {
+	        pages.add(i);
+	    }
+	    return pages;
+	}
+
+	public void goToPage(int pageNumber) {
+	    if (pageNumber >= 1 && pageNumber <= getTotalPages()) {
+	        this.page = pageNumber - 1;
+	        sortAndPaginate();
+	    }
+	}
+
+	
+	
+	
+	
+	
+	
+	
+//	==============
+	
+	
+	
+	
+	
 	private Pharmacy selectedPharmacy;
 
 	public void setSelectedPharmacy(Pharmacy selectedPharmacy) {
