@@ -105,19 +105,15 @@ th a, th a:visited {
 	text-decoration: none;
 }
 
-.page-nav-row,
-.page-nav-row table,
-.page-nav-row tbody,
-.page-nav-row tr,
-.page-nav-row td {
-  display: flex;
-  flex-direction: row;
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
+.page-nav-row, .page-nav-row table, .page-nav-row tbody, .page-nav-row tr,
+	.page-nav-row td {
+	display: flex;
+	flex-direction: row;
+	border: none;
+	background: none;
+	padding: 0;
+	margin: 0;
 }
-
 </style>
 </head>
 <body>
@@ -237,19 +233,33 @@ th a, th a:visited {
 			<div
 				style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
 
-				<!-- Left side: page number buttons in one row -->
-				<h:dataTable value="#{reviewPharmacyController.pageNumbers}"
-					var="pageNum" styleClass="page-nav-row"
-					style="border: none; margin: 0; padding: 0;">
-					<h:column>
-						<h:commandButton value="#{pageNum}"
-							action="#{reviewPharmacyController.goToPage(pageNum)}"
-							disabled="#{pageNum == reviewPharmacyController.page + 1}"
-							style="margin-right: 5px;" styleClass="action-button" />
-					</h:column>
-				</h:dataTable>
+				<!-- Left: Page Number Block with Row Prev/Next -->
+				<div style="display: flex; align-items: center;">
 
-				<!-- Right side: Previous and Next buttons -->
+					<!-- Row Previous Button -->
+					<h:commandButton value="Prev row" title="Prev row"
+						action="#{reviewPharmacyController.previousBlock}"
+						disabled="#{reviewPharmacyController.currentBlock eq 0}"
+						style="margin-right: 8px;" styleClass="action-button" />
+
+					<h:dataTable value="#{reviewPharmacyController.pageNumbers}"
+						var="pageNum" styleClass="page-nav-row">
+						<h:column>
+							<h:commandButton value="#{pageNum}"
+								action="#{reviewPharmacyController.goToPage(pageNum)}"
+								disabled="#{pageNum == reviewPharmacyController.page + 1}"
+								style="margin-right: 5px;" styleClass="action-button" />
+						</h:column>
+					</h:dataTable>
+
+					<!-- Row Next Button -->
+					<h:commandButton value="Next row" title="Next row"
+						action="#{reviewPharmacyController.nextBlock}"
+						disabled="#{reviewPharmacyController.currentBlock + 1 ge (reviewPharmacyController.totalPages / reviewPharmacyController.pageBlockSize)}"
+						style="margin-left: 8px;" styleClass="action-button" />
+				</div>
+
+				<!-- Right: Regular Prev/Next -->
 				<div>
 					<h:commandButton value="Previous"
 						action="#{reviewPharmacyController.previousPage}"
@@ -261,8 +271,8 @@ th a, th a:visited {
 						disabled="#{reviewPharmacyController.page + 1 ge reviewPharmacyController.totalPages}"
 						styleClass="action-button" />
 				</div>
-
 			</div>
+
 
 
 		</h:form>

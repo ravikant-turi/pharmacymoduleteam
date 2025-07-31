@@ -204,25 +204,49 @@ public class ReviewPharmacyController {
 	}
 //-===================
 
+	// Controller variable
+	private int pageBlockSize = 3; // how many page numbers to show per row
+	private int currentBlock = 0;  // which block of pages user is viewing (starts at 0)
+
 	public List<Integer> getPageNumbers() {
 	    List<Integer> pages = new ArrayList<>();
 	    int totalPages = getTotalPages();
-	    int windowSize = 5;
-	    int currentWindow = page / windowSize;
-	    int startPage = currentWindow * windowSize + 1;
-	    int endPage = Math.min(startPage + windowSize - 1, totalPages);
+	    int startPage = currentBlock * pageBlockSize + 1;
+	    int endPage = Math.min(startPage + pageBlockSize - 1, totalPages);
+
 	    for (int i = startPage; i <= endPage; i++) {
 	        pages.add(i);
 	    }
 	    return pages;
 	}
-
+	// Jump to a page within the current block
 	public void goToPage(int pageNumber) {
 	    if (pageNumber >= 1 && pageNumber <= getTotalPages()) {
 	        this.page = pageNumber - 1;
 	        sortAndPaginate();
 	    }
 	}
+	// Move to the next block of pages (row)
+	public void nextBlock() {
+	    int totalPages = getTotalPages();
+	    int totalBlocks = (int)Math.ceil((double)totalPages / pageBlockSize);
+	    if (currentBlock + 1 < totalBlocks) {
+	        currentBlock++;
+	        sortAndPaginate();
+	    }
+	}
+	// Move to the previous block of pages (row)
+	public void previousBlock() {
+	    if (currentBlock > 0) {
+	        currentBlock--;
+	        sortAndPaginate();  
+	    }
+	}
+	// Optionally: when going to a new page, you can update currentBlock if you want the selected page to always be visible
+
+	// Regular page next/previous (as before)
+	
+
 
 	   
 	
@@ -239,6 +263,26 @@ public class ReviewPharmacyController {
 	
 	
 	private Pharmacy selectedPharmacy;
+
+	public int getPageBlockSize() {
+		return pageBlockSize;
+	}
+
+	public void setPageBlockSize(int pageBlockSize) {
+		this.pageBlockSize = pageBlockSize;
+	}
+
+	public int getCurrentBlock() {
+		return currentBlock;
+	}
+
+	public void setCurrentBlock(int currentBlock) {
+		this.currentBlock = currentBlock;
+	}
+
+	public static Logger getLogger() {
+		return logger;
+	}
 
 	public void setSelectedPharmacy(Pharmacy selectedPharmacy) {
 		this.selectedPharmacy = selectedPharmacy;
