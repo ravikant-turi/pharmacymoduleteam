@@ -105,23 +105,19 @@ th a, th a:visited {
 	text-decoration: none;
 }
 
-/* Make the h:dataTable a horizontal flex row, with no default table look */
-.page-nav-row, .page-nav-row table, .page-nav-row tbody, .page-nav-row tr
-	{
-	display: flex !important;
-	flex-direction: row !important;
-	border: none !important;
-	background: none !important;
-	padding: 0 !important;
-	margin: 0 !important;
+.page-nav-row,
+.page-nav-row table,
+.page-nav-row tbody,
+.page-nav-row tr,
+.page-nav-row td {
+  display: flex;
+  flex-direction: row;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
 }
 
-.page-nav-row td {
-	border: none !important;
-	background: none !important;
-	padding: 0 !important;
-	margin: 0 !important;
-}
 </style>
 </head>
 <body>
