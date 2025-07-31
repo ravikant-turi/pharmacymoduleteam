@@ -179,3 +179,104 @@ CREATE TABLE Pharmacy_Otp (
     expires_at DATETIME NOT NULL,
     FOREIGN KEY (pharmacy_id) REFERENCES Pharmacy(pharmacy_id)
 );
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO Pharmacy VALUES
+('PH007', 'MediQuick Pharmacy', '9876543212', 'turiravikant@gmail.com', 'pass7890', CURRENT_TIMESTAMP, 'Gujarat', 'Ahmedabad', 'LIC00007', 'PENDING', 'GSTIN0007GJ', '380001', '15 Ashram Road', 'Rahul', NULL, 'Sharma', 'Male', '9876543213', 'turiravikant@gmail.com', 'AADHAR000007', 'Flat 1, Satellite Area');
+
+INSERT INTO Pharmacy VALUES
+('PH008', 'CareWell Pharma', '9123456782', 'turiravikant@gmail.com', 'pass1234', CURRENT_TIMESTAMP, 'Rajasthan', 'Jaipur', 'LIC00008', 'PENDING', 'GSTIN0008RJ', '302001', '22 C-Scheme', 'Deepa', 'Kumari', 'Singh', 'Female', '9123456783', 'turiravikant@gmail.com', 'AADHAR000008', 'House 5, Malviya Nagar');
+
+INSERT INTO Pharmacy VALUES
+('PH009', 'LifeLine Drugs', '9988776657', 'turiravikant@gmail.com', 'pass5678', CURRENT_TIMESTAMP, 'Uttar Pradesh', 'Lucknow', 'LIC00009', 'PENDING', 'GSTIN0009UP', '226001', '30 Hazratganj', 'Suresh', NULL, 'Verma', 'Male', '9988776658', 'turiravikant@gmail.com', 'AADHAR000009', 'Apartment 10, Gomti Nagar');
+
+INSERT INTO Pharmacy VALUES
+('PH010', 'Healthy Habit', '9012345680', 'turiravikant@gmail.com', 'pass9012', CURRENT_TIMESTAMP, 'Madhya Pradesh', 'Bhopal', 'LIC00010', 'PENDING', 'GSTIN0010MP', '462001', '45 Arera Colony', 'Anjali', 'Devi', 'Gupta', 'Female', '9012345681', 'turiravikant@gmail.com', 'AADHAR000010', 'Plot 8, Kolar Road');
+
+INSERT INTO Pharmacy VALUES
+('PH011', 'Prime Meds', '9823456792', 'turiravikant@gmail.com', 'pass3456', CURRENT_TIMESTAMP, 'Bihar', 'Patna', 'LIC00011', 'PENDING', 'GSTIN0011BR', '800001', '55 Frazer Road', 'Alok', NULL, 'Mishra', 'Male', '9823456793', 'turiravikant@gmail.com', 'AADHAR000011', 'Bungalow 12, Boring Road');
+
+INSERT INTO Pharmacy VALUES
+('PH012', 'QuickHeal Pharmacy', '9876543214', 'turiravikant@gmail.com', 'pass7890', CURRENT_TIMESTAMP, 'Odisha', 'Bhubaneswar', 'LIC00012', 'PENDING', 'GSTIN0012OD', '751001', '60 Janpath', 'Swati', 'Priya', 'Mohanty', 'Female', '9876543215', 'turiravikant@gmail.com', 'AADHAR000012', 'Lane 3, Nayapalli');
+
+INSERT INTO Pharmacy VALUES
+('PH013', 'City Drugs', '9123456784', 'turiravikant@gmail.com', 'pass1234', CURRENT_TIMESTAMP, 'Assam', 'Guwahati', 'LIC00013', 'PENDING', 'GSTIN0013AS', '781001', '70 GS Road', 'Pranav', NULL, 'Das', 'Male', '9123456785', 'turiravikant@gmail.com', 'AADHAR000013', 'House 9, Zoo Road');
+
+INSERT INTO Pharmacy VALUES
+('PH014', 'Family Care Pharmacy', '9988776659', 'turiravikant@gmail.com', 'pass5678', CURRENT_TIMESTAMP, 'Punjab', 'Chandigarh', 'LIC00014', 'PENDING', 'GSTIN0014PB', '160001', '80 Sector 17', 'Kiran', 'Kaur', 'Gill', 'Female', '9988776660', 'turiravikant@gmail.com', 'AADHAR000014', 'Flat 15, Sector 22');
+
+INSERT INTO Pharmacy VALUES
+('PH015', 'Relief Meds', '9012345682', 'turiravikant@gmail.com', 'pass9012', CURRENT_TIMESTAMP, 'Haryana', 'Gurugram', 'LIC00015', 'PENDING', 'GSTIN0015HR', '122001', '90 Cyber Hub', 'Rohan', NULL, 'Malhotra', 'Male', '9012345683', 'turiravikant@gmail.com', 'AADHAR000015', 'Tower 2, DLF Phase 3');
+
+INSERT INTO Pharmacy VALUES
+('PH016', 'Trusty Drugs', '9823456794', 'turiravikant@gmail.com', 'pass3456', CURRENT_TIMESTAMP, 'Kerala', 'Kochi', 'LIC00016', 'PENDING', 'GSTIN0016KL', '682001', '100 MG Road', 'Leena', 'Mary', 'Joseph', 'Female', '9823456795', 'turiravikant@gmail.com', 'AADHAR000016', 'Villa 7, Kakkanad');
+
+INSERT INTO Pharmacy VALUES
+('PH017', 'Apex Pharmacy', '9876543216', 'turiravikant@gmail.com', 'pass7890', CURRENT_TIMESTAMP, 'Andhra Pradesh', 'Visakhapatnam', 'LIC00017', 'PENDING', 'GSTIN0017AP', '530001', '110 Beach Road', 'Vijay', NULL, 'Reddy', 'Male', '9876543217', 'turiravikant@gmail.com', 'AADHAR000017', 'Plot 20, MVP Colony');
+
+INSERT INTO Pharmacy VALUES
+('PH018', 'MediMart', '9123456786', 'turiravikant@gmail.com', 'pass1234', CURRENT_TIMESTAMP, 'Telangana', 'Hyderabad', 'LIC00018', 'PENDING', 'GSTIN0018TS', '500001', '120 Banjara Hills', 'Shruti', 'Priya', 'Rao', 'Female', '9123456787', 'turiravikant@gmail.com', 'AADHAR000018', 'Flat 25, Gachibowli');
+
+INSERT INTO Pharmacy VALUES
+('PH019', 'HealthPoint', '9988776661', 'turiravikant@gmail.com', 'pass5678', CURRENT_TIMESTAMP, 'Chhattisgarh', 'Raipur', 'LIC00019', 'PENDING', 'GSTIN0019CG', '492001', '130 GE Road', 'Amit', NULL, 'Chauhan', 'Male', '9988776662', 'turiravikant@gmail.com', 'AADHAR000019', 'House 30, Shankar Nagar');
+
+INSERT INTO Pharmacy VALUES
+('PH020', 'Wellness Depot', '9012345684', 'turiravikant@gmail.com', 'pass9012', CURRENT_TIMESTAMP, 'Jharkhand', 'Ranchi', 'LIC00020', 'PENDING', 'GSTIN0020JH', '834001', '140 Main Road', 'Pooja', 'Rani', 'Sinha', 'Female', '9012345685', 'turiravikant@gmail.com', 'AADHAR000020', 'Apartment 35, Doranda');
+
+INSERT INTO Pharmacy VALUES
+('PH021', 'MediServe', '9823456796', 'turiravikant@gmail.com', 'pass3456', CURRENT_TIMESTAMP, 'Uttarakhand', 'Dehradun', 'LIC00021', 'PENDING', 'GSTIN0021UK', '248001', '150 Rajpur Road', 'Gaurav', NULL, 'Negi', 'Male', '9823456797', 'turiravikant@gmail.com', 'AADHAR000021', 'Villa 40, Mussoorie Road');
+
+INSERT INTO Pharmacy VALUES
+('PH022', 'The Drug Store', '9876543218', 'turiravikant@gmail.com', 'pass7890', CURRENT_TIMESTAMP, 'Goa', 'Panaji', 'LIC00022', 'PENDING', 'GSTIN0022GA', '403001', '160 Miramar Beach Road', 'Maria', 'Fernandes', 'D\'Souza', 'Female', '9876543219', 'turiravikant@gmail.com', 'AADHAR000022', 'House 45, Dona Paula');
+
+INSERT INTO Pharmacy VALUES
+('PH023', 'Health Hub', '9123456788', 'turiravikant@gmail.com', 'pass1234', CURRENT_TIMESTAMP, 'Himachal Pradesh', 'Shimla', 'LIC00023', 'PENDING', 'GSTIN0023HP', '171001', '170 Mall Road', 'Sanjay', NULL, 'Thakur', 'Male', '9123456789', 'turiravikant@gmail.com', 'AADHAR000023', 'Cottage 50, Chhota Shimla');
+
+INSERT INTO Pharmacy VALUES
+('PH024', 'PharmaCare', '9988776663', 'turiravikant@gmail.com', 'pass5678', CURRENT_TIMESTAMP, 'Jammu and Kashmir', 'Srinagar', 'LIC00024', 'PENDING', 'GSTIN0024JK', '190001', '180 Dal Lake Road', 'Fatima', 'Bano', 'Khan', 'Female', '9988776664', 'turiravikant@gmail.com', 'AADHAR000024', 'Houseboat 55, Nigeen Lake');
+
+INSERT INTO Pharmacy VALUES
+('PH025', 'MedPlus', '9012345686', 'turiravikant@gmail.com', 'pass9012', CURRENT_TIMESTAMP, 'Arunachal Pradesh', 'Itanagar', 'LIC00025', 'PENDING', 'GSTIN0025R', '791111', '190 Ganga Market', 'Tenzin', NULL, 'Wangchuk', 'Male', '9012345687', 'turiravikant@gmail.com', 'AADHA00025', 'Sector 60, Naharlagun');
+
+INSERT INTO Pharmacy VALUES
+('PH026', 'Health & Home', '9823456798', 'turiravikant@gmail.com', 'pass3456', CURRENT_TIMESTAMP, 'Manipur', 'Imphal', 'LIC00026', 'PENDING', 'GSTIN0026MN', '795001', '200 MG Avenue', 'Thoiba', 'Devi', 'Singh', 'Female', '9823456799', 'turiravikant@gmail.com', 'AADHAR00026', 'Kwakeithel Bazar');
+
+INSERT INTO Pharmacy VALUES
+('PH027', 'Quick Meds', '9876543220', 'turiravikant@gmail.com', 'pass7890', CURRENT_TIMESTAMP, 'Meghalaya', 'Shillong', 'LIC00027', 'PENDING', 'GSTIN0027ML', '793001', '210 Police Bazar', 'John', NULL, 'Lyngdoh', 'Male', '9876543221', 'turiravikant@gmail.com', 'AADHA00027', 'Laitumkhrah');
+
+INSERT INTO Pharmacy VALUES
+('PH028', 'Vitality Pharmacy', '9123456790', 'turiravikant@gmail.com', 'pass1234', CURRENT_TIMESTAMP, 'Mizoram', 'Aizawl', 'LIC00028', 'PENDING', 'GSTIN0028MZ', '796001', '220 Zarkawt', 'Lalrinpuii', 'Hmar', 'Chawngthu', 'Female', '9123456791', 'turiravikant@gmail.com', 'AADHAR0028', 'Chanmari');
+
+INSERT INTO Pharmacy VALUES
+('PH029', 'Cure & Care', '9988776665', 'turiravikant@gmail.com', 'pass5678', CURRENT_TIMESTAMP, 'Nagaland', 'Kohima', 'LIC00029', 'PENDING', 'GSTIN0029NL', '797001', '230 BOC Point', 'Kevilebo', NULL, 'Zeliang', 'Male', '9988776666', 'turiravikant@gmail.com', 'AAHAR000029', 'Lower Chandmari');
+
+INSERT INTO Pharmacy VALUES
+('PH030', 'The Chemist', '9012345688', 'turiravikant@gmail.com', 'pass9012', CURRENT_TIMESTAMP, 'Sikkim', 'Gangtok', 'LIC00030', 'PENDING', 'GSTIN0030SK', '737101', '240 MG Marg', 'Pema', 'Lhamo', 'Bhutia', 'Female', '9012345689', 'turiravikant@gmail.com', 'AADHAR00030', 'Upper Sichey');
+
+INSERT INTO Pharmacy VALUES
+('PH031', 'MediCorner', '9823456800', 'turiravikant@gmail.com', 'pass3456', CURRENT_TIMESTAMP, 'Tripura', 'Agartala', 'LIC00031', 'PENDING', 'GSTN0031TR', '799001', '250 Akhaura Road', 'Subrata', NULL, 'Chakraborty', 'Male', '9823456801', 'turiravikant@gmail.com', 'AADHAR000031', 'Battala');
+
+INSERT INTO Pharmacy VALUES
+('PH032', 'Good Health Pharmacy', '9876543222', 'turiravikant@gmail.com', 'pass7890', CURRENT_TIMESTAMP, 'Andaman and Nicobar Islands', 'Port Blair', 'LIC00032', 'PENDING', 'GSTIN0032AN', '744101', '260 Aberdeen Bazaar', 'Rani', 'Devi', 'Singh', 'Female', '9876543223', 'turiravikant@gmail.com', 'AADHAR000032', 'Phoenix Bay');
+
+INSERT INTO Pharmacy VALUES
+('PH033', 'Island Meds', '9123456792', 'turiravikant@gmail.com', 'pass1234', CURRENT_TIMESTAMP, 'Chandigarh', 'Chandigarh', 'LIC00033', 'PENDING', 'GSIN0033CH', '160017', '270 Sector 22', 'Arjun', NULL, 'Sharma', 'Male', '9123456793', 'turiravikant@gmail.com', 'AADHAR000033', 'Sector 34');
+
+INSERT INTO Pharmacy VALUES
+('PH034', 'Capital Pharmacy', '9988776667', 'turiravikant@gmail.com', 'pass5678', CURRENT_TIMESTAMP, 'Dadra and Nagar Haveli and Daman and Diu', 'Daman', 'LIC00034', 'PENDING', 'GSTIN0034DD', '396210', '280 Nani Daman', 'Priya', 'Kumari', 'Patel', 'Female', '9988776668', 'turiravikant@gmail.com', 'AADHAR000034', 'Moti Daman');
+
+INSERT INTO Pharmacy VALUES
+('PH035', 'Union Meds', '9012345690', 'turiravikant@gmail.com', 'pass9012', CURRENT_TIMESTAMP, 'Lakshadweep', 'Kavaratti', 'LIC0003', 'PENDING', 'GSTIN0035LD', '682555', '290 Main Road', 'Ahmed', NULL, 'Khan', 'Male', '9012345691', 'turiravikant@gmail.com', 'AADHAR000035', 'Near Jetty');
+
+INSERT INTO Pharmacy VALUES
+('PH036', 'Pondy Pharmacy', '9823456802', 'turiravikant@gmail.com', 'pass3456', CURRENT_TIMESTAMP, 'Puducherry', 'Puducherry', 'LI0036', 'PENDING', 'GSTIN0036PY', '605001', '300 White Town', 'Sophie', 'Marie', 'Dubois', 'Female', '9823456803', 'turiravikant@gmail.com', 'AADHAR000036', 'Rue de la Marine');
